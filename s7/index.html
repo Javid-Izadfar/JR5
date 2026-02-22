@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    body
+    <script>
+        // console.log('hi')
+        // console.log('second')
+        // setTimeout(() => {
+        //     console.log('inside TimeOut')
+        // }, 3000)
+        // console.log('last')
+        // setInterval(() => {
+        //     console.log('inside Interval')
+        // }, 2000)
+
+
+        // const sayHello = (name) => {
+        //     return setTimeout(() => {
+        //         return 'Hi, ' + name
+        //     }, 2000)
+        // }
+        // const greetings = sayHello('Jay')
+        // console.log(greetings)
+
+        
+        const createGreetings = (name) => {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    if (name === 'Javid') {
+                        reject('I dont know you')
+                    } else {
+                        resolve('Hello, ' + name)
+                    }
+                }, 2000)
+            })
+        }
+
+        const sayHi = (name) => {
+            createGreetings(name)
+                .then((text) => {
+                    console.log('result', text)
+                }).catch((err) => {
+                    console.log('error', err)
+                }).finally(() => {
+                    console.log('at the end')
+                })
+        }
+        // sayHi('Jay')
+
+        const sayHi2 = async (name) => {
+            try {
+                const greetings = await createGreetings(name)
+                console.log(greetings)
+            } catch (error) {    
+                console.log('there was some issue')
+            }
+            console.log('finally')
+        }
+        // sayHi2('Jay')
+
+        // const res = await createGreetings('Iman')
+        // console.log(res)
+
+        const getRandom = (min, max) => {
+            return Math.floor(Math.random() * (max - min + 1)) + min
+        }
+
+        const throwDice = () => {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve(getRandom(1, 6))
+                }, 2000)
+            })
+        }
+
+        const playGame = async () => {
+            const result = await throwDice()
+            console.log(result === 6 ? 'YEEES' : 'oh no its ' + result )
+        }
+        // playGame()
+
+        const playGame2 = async () => {
+            const userInput = prompt('give me a number')
+
+            // Sequential
+            // const result1 = await throwDice()
+            // console.log('result1', result1)
+            // const result2 = await throwDice()
+            // console.log('result2', result2)
+
+            // Parallel
+            const [result1, result2] = await Promise.all([throwDice(), throwDice()])
+            console.log('result1', result1)
+            console.log('result2', result2)
+            console.log(result1 === result2 ? 'Two of Kind!' : 'oh no')
+        }
+        playGame2()
+    </script>
+</body>
+</html>
