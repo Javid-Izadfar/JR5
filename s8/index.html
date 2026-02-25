@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    s8
+</body>
+<script>
+    // let message = 'foo'
+    // setTimeout(() => {
+    //     console.log(message)
+    //     console.log('after')
+    // }, 0)
+    // console.log('hi')
+    // const foo = () => {
+    //     console.log(message)
+    //     console.log('inside foo')
+    // }
+    // foo()
+    // Promise.resolve().then(() => {
+    //     message = 'bar'
+    //     console.log('then')
+    // })
+    // console.log(message)
+    // console.log('second')
+
+    // console.log("A")
+    // setTimeout(() => {
+    //     console.log("B")
+    // }, 0)
+    // console.log("C")
+
+    // console.log(1)
+    // Promise.resolve().then(() => {
+    //     console.log(2)
+    // })
+    // console.log(3)
+
+    // console.log("Start")
+    // setTimeout(() => {
+    //     console.log("Timeout")
+    // }, 0)
+    // Promise.resolve().then(() => {
+    //     console.log("Promise")
+    // })
+    // console.log("End")
+
+    // let j = null;
+    // for (let i = 0; i < 3; i++) {
+    //     j = i
+    //     setTimeout(() => {
+    //         console.log(j)
+    //     }, 0)
+    // }
+
+    // console.log("Start")
+    // for (let i = 0; i < 2; i++) {
+    //     Promise.resolve().then(() => {
+    //         console.log("Promise", i)
+    //     })
+    // }
+    // console.log("End")
+
+    // console.log("A")
+    // setTimeout(() => {
+    //     console.log("B")
+    // }, 0)
+    // Promise.resolve()
+    //     .then(() => {
+    //         console.log("C")
+    //     })
+    //     .then(() => {
+    //         console.log("D")
+    //     })
+    // console.log("E")
+
+    // console.log("A")
+    // setTimeout(() => console.log("B"), 0)
+    // Promise.resolve().then(() => {
+    //     console.log("C")
+    //     setTimeout(() => console.log("D"), 0)
+    // })
+    // console.log("E")
+
+    // Promise.resolve().then(() => {
+    //     console.log(1)
+    //     Promise.resolve().then(() => console.log(2))
+    // })
+    // Promise.resolve().then(() => console.log(3))
+
+    // const test = async () => {
+    //     console.log(1)
+    //     await Promise.resolve()
+    //     console.log(2)
+    // }
+    // console.log(3)
+    // test()
+    // console.log(4)
+
+    console.log("1")
+    setTimeout(() => {
+        console.log("2")
+        Promise.resolve().then(() => console.log("3"))
+    }, 0)
+    Promise.resolve()
+        .then(() => {
+            console.log("4")
+            setTimeout(() => console.log("5"), 0)
+        })
+        .then(() => console.log("6"))
+    console.log("7")
+
+    // 1, 7, 4, 6, 2, 3, 5
+</script>
+</html>
