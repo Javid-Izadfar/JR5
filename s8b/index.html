@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const whatsYourName = () => {
+            console.log('inside whatsYourName')
+            // const timeout = setTimeout(() => {
+            //     console.log('inside setTimeout')
+            //     return 'Jay'
+            // }, 2000)
+            // console.log('timeout', timeout)
+            // return timeout
+            // return 'Jay'
+            return new Promise((resolve, reject) => {
+                console.log('inside promise')
+                setTimeout(() => {
+                    console.log('inside timeout')
+                    resolve('Jay')
+                    // reject('WTH')
+                }, 2000)
+            })
+        }
+
+        const whatsYourAge = () => {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve(32)
+                }, 2000)
+            })
+        }
+
+        const sayHi = (name) => {
+            console.log('inside sayHi')
+            console.log('Hi ' + name )
+        }
+
+        // const userName = whatsYourName()
+        // console.log('userName', userName)
+        // sayHi(userName)
+        // whatsYourName().then((userName) => {
+        //     console.log('userName', userName)
+        //     sayHi(userName)
+        // }).catch((err) => {
+        //     console.error(err)
+        // }).finally(() => {
+        //     console.log('its all done now')
+        // })
+
+        // const run = async () => {
+        //     console.log('inside Run')
+        //     const userName = await whatsYourName()
+        //     const userAge = await whatsYourAge()
+        //     console.log('user', userName, userAge)
+        //     sayHi(userName + ' @ ' + userAge)
+        // }
+
+        
+            // const userName = await whatsYourName()
+
+            // sayHi(userName)
+
+            const run = async () => {
+                console.log('inside Run')
+                const [name, age] = await Promise.all([whatsYourName(), whatsYourAge()])
+                console.log('user', name, age)
+                sayHi(name + ' @ ' + age)
+            }
+        run()
+
+    </script>
+</body>
+</html>
