@@ -100,19 +100,130 @@
     // test()
     // console.log(4)
 
-    console.log("1")
-    setTimeout(() => {
-        console.log("2")
-        Promise.resolve().then(() => console.log("3"))
-    }, 0)
-    Promise.resolve()
-        .then(() => {
-            console.log("4")
-            setTimeout(() => console.log("5"), 0)
-        })
-        .then(() => console.log("6"))
-    console.log("7")
+    // console.log("1")
+    // setTimeout(() => {
+    //     console.log("2")
+    //     Promise.resolve().then(() => console.log("3"))
+    // }, 0)
+    // Promise.resolve()
+    //     .then(() => {
+    //         console.log("4")
+    //         setTimeout(() => console.log("5"), 0)
+    //     })
+    //     .then(() => console.log("6"))
+    // console.log("7")
 
     // 1, 7, 4, 6, 2, 3, 5
+
+
+    // Q1
+    // console.log("A")
+    // setTimeout(() => console.log("B"), 0)
+    // Promise.resolve()
+    //     .then(() => { console.log("C") })
+    //     .then(() => { console.log("D") })
+    // console.log("E")
+    // A E C D B
+
+    // Q2
+    // console.log(1)
+    // Promise.resolve().then(() => {
+    //     console.log(2);
+    //     setTimeout(() => console.log(3), 0)
+    // })
+    // setTimeout(() => console.log(4), 0)
+    // console.log(5)
+    // 1 5 2 4 3
+
+    // Q3
+    // setTimeout(() => console.log("T1"), 0)
+    // Promise.resolve().then(() => {
+    //     console.log("P1");
+    //     Promise.resolve().then(() => console.log("P2"))
+    // })
+    // Promise.resolve().then(() => console.log("P3"))
+    // P1 P3 P2 T1
+
+    // Q4
+    // async function testQ4() {
+    //     console.log("A")
+    //     await Promise.resolve()
+    //     console.log("B")
+    // }
+    // console.log("Start")
+    // testQ4()
+    // Promise.resolve().then(() => console.log("C"))
+    // console.log("End")
+    // Start End A C B
+
+    // Q5
+    // async function testQ5() {
+    //     console.log(1)
+    //     await null
+    //     console.log(2)
+    //     await null
+    //     console.log(3)
+    // }
+    // setTimeout(() => console.log(4), 0)
+    // testQ5()
+    // console.log(5)
+    // 1 5 2 3 4
+
+    // Q6
+    // for (let i = 0; i <= 2; i++) {
+    //     console.log("P", i)
+    //     setTimeout(() => console.log("T", i), 0)
+    // }
+    // console.log("Done")
+    // P0 P1 P2 Done T0 T1 T2
+
+    // Q7
+    // for (let i = 0; i <= 2; i++) {
+    //     console.log("T", i)
+    //     Promise.resolve().then(() => console.log("P", i))
+    // }
+    // Promise.resolve().then(() => console.log("First"))
+    // console.log("Last")
+    // T0 T1 T2 Last P0 P1 P2 First
+
+    // Q8 (Promise chain interleaving)
+    // Promise.resolve()
+    //     .then(() => {
+    //         console.log("A");
+    //         return Promise.resolve()
+    //     })
+    //     .then(() => { console.log("B") })
+    // Promise.resolve().then(() => console.log("C"))
+    // setTimeout(() => console.log("D"), 0)
+    // A C B D
+
+    // Q9
+    // async function testQ9() {
+    //     console.log("Start")
+    //     await Promise.resolve().then(() => { console.log("Inner") })
+    //     console.log("After")
+    // }
+    // setTimeout(() => console.log("Timeout"), 0)
+    // console.log("Before")
+    // testQ9()
+    // console.log("End")
+
+    // Before Start End After Inner Timeout
+
+    // Q10
+    // console.log("1")
+    // setTimeout(() => {
+    //     console.log("2");
+    //     Promise.resolve().then(() => console.log("3"))
+    // }, 0)
+    // Promise.resolve()
+    //     .then(() => {
+    //         console.log("4");
+    //         setTimeout(() => console.log("5"), 0);
+    //         return Promise.resolve()
+    //     })
+    //     .then(() => console.log("6"))
+    // console.log("7")
+    // 1 7 4 6 2 3 5
 </script>
 </html>
