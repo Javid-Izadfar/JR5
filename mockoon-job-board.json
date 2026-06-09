@@ -1,0 +1,72 @@
+{
+  "uuid": "f4ee24dc-1b74-4a9a-92ee-6a6622ea35f4",
+  "lastMigration": 33,
+  "name": "Job Board API",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3001,
+  "routes": [
+    {
+      "uuid": "2424198d-e3ac-4cb4-9b9f-07728eba28ca",
+      "documentation": "List jobs",
+      "method": "get",
+      "endpoint": "jobs",
+      "responses": [
+        {
+          "uuid": "b6bfe1ce-4616-48fa-91a3-50c3165b5e9e",
+          "body": "{{setVar 'size' (queryParam 'page_size' 10) }}\n\n[\n  {{# repeat @size}}\n  {\n    \"id\": \"{{ faker 'string.uuid' }}\",\n    \"title\": \"{{ faker 'person.jobTitle' }}\",\n    \"company\": \"{{ faker 'company.name' }}\",\n    \"location\": \"{{ faker 'location.city' }}\",\n    \"type\": \"{{oneOf (array 'part' 'full')}}\",\n    \"remote\": {{ faker 'datatype.boolean' }},\n    \"salary\": {{ faker 'number.int' min=20 max=100 multipleOf=10 }}\n  }\n  {{/ repeat}}\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "OK",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "type": "http",
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    }
+  ],
+  "hostname": "",
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "2424198d-e3ac-4cb4-9b9f-07728eba28ca"
+    }
+  ],
+  "folders": [],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [],
+  "proxyReqHeaders": [],
+  "proxyResHeaders": [],
+  "data": [],
+  "callbacks": []
+}
