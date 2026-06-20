@@ -23,6 +23,8 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
+import { NameProvider } from "./stores/name/provider";
+
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
@@ -33,7 +35,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <NameProvider>{children}</NameProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
