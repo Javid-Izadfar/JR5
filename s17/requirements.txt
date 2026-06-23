@@ -1,0 +1,89 @@
+# Country Explorer — Exam Project
+
+## What to Build
+A web app that lists countries from the ApiCountries API (https://www.apicountries.com/) with search, filtering, dark/light theme, and a detail page.
+
+## Tech Stack
+- React + TypeScript (Vite)
+- shadcn/ui
+- Tailwind CSS
+- React Router
+- React Context (for theme + data)
+
+## API Info
+- Endpoint: GET https://www.apicountries.com/countries
+- Returns: Array of country objects
+- Key fields: name, capital, region, population, area, flags, languages, currencies, borders, alpha3Code, nativeName, demonym, timezones, subregion
+- region values (for continent filtering): Africa, Americas, Asia, Europe, Oceano
+
+## Routes
+- / — Home: country list with search bar + continent filter buttons + theme toggle
+- /country/:code — Country detail page (:code = alpha3Code)
+
+## Features
+
+### 1. Dark/Light Theme (React Context)
+- Create a ThemeContext with a provider
+- Store theme state ("light" or "dark")
+- Toggle .dark class on the <html> element
+- Persist choice to localStorage so it survives reload
+- Put a Sun/Moon toggle button in the navbar
+
+### 2. Country Data (React Context)
+- Create a CountryContext that fetches all countries once on app load
+- Store the array + loading/error states
+- All pages consume this context (no repeated API calls)
+
+### 3. Search
+- Text input that filters countries by name or capital (case-insensitive)
+- Filter happens client-side on the already-fetched array
+
+### 4. Continent Filter Buttons
+- Buttons for: All, Africa, Americas, Asia, Europe, Oceano
+- Active button gets a different style
+- Combine with search — both filters work together
+
+### 5. Country Card
+- Shows: flag image, country name, capital, region
+- Clicking it navigates to /country/:alpha3Code
+- Use shadcn Card component
+
+### 6. Country Detail Page
+- Reads :code from the URL
+- Finds the country in the context data
+- Shows: flag, name, capital, region, subregion, population, area, languages, currencies, bordering countries, timezones
+- Has a "Back" button to return to the list
+
+## Files to Create
+
+| File | Purpose |
+|------|---------|
+| src/lib/types.ts | TypeScript Country type |
+| src/contexts/ThemeContext.tsx | Dark/light theme provider |
+| src/contexts/CountryContext.tsx | Country data provider (fetch + state) |
+| src/components/ThemeToggle.tsx | Sun/Moon button |
+| src/components/CountryCard.tsx | Country card component |
+| src/pages/Home.tsx | Main list page (search + filters + grid) |
+| src/pages/CountryDetail.tsx | Country detail page |
+| src/App.tsx | Root layout with providers + router + navbar |
+
+## Shadcn Components to Add
+npx shadcn@latest add card badge
+
+## Suggested Build Order
+1. Set up types.ts and the two contexts
+2. Build App.tsx with providers and router
+3. Build ThemeToggle + wire it into the navbar
+4. Build CountryCard
+5. Build Home page (search + filters + card grid)
+6. Build CountryDetail page
+7. Test everything
+
+## Verification
+- npm run build passes
+- Countries load and display
+- Search works for both name and capital
+- Continent buttons filter correctly
+- Theme toggle works and persists
+- Clicking a card opens the detail page
+- Back button returns to the list
