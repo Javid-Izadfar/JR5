@@ -23,17 +23,22 @@
  * Shadcn components: npx shadcn@latest add card badge
  */
 
-import { BrowserRouter, Routes, Route } from 'react-router'
-import Home from '@/pages/Home'
+import { BrowserRouter, Routes, Route } from "react-router";
+import Home from "@/pages/Home";
+import { CountryProvider } from "./contexts/CountryContext";
+import { CountryDetail } from "./pages/CountryDetail";
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
+      <CountryProvider>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/country/:alpha3Code" element={<CountryDetail />} />
+        </Routes>
+      </CountryProvider>
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;
