@@ -1,9 +1,14 @@
 import { Link } from "react-router-dom";
 import LoginForm from "@/components/LoginForm";
+import { Box } from "@/components/ui/Box";
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen gap-4 p-8">
+    <Box
+      flex
+      flexDir="col"
+      className="items-center justify-center min-h-screen gap-4 p-8"
+    >
       <h1 className="text-4xl font-bold">Welcome to S23</h1>
       <p className="text-muted-foreground">
         React + React Router + Zustand + shadcn/ui
@@ -15,6 +20,6 @@ export default function Home() {
       >
         Go to About
       </Link>
-    </div>
+    </Box>
   );
 }
